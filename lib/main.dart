@@ -1,6 +1,6 @@
+import 'package:felis_catus/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/login/login_page.dart';
 main(){
   runApp(const MyApp());
 }
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-         // primarySwatch: Colors.blue
+         primarySwatch: Colors.blueGrey
       ),
-      home: const LoginPage(),
+      home: const SplashScreen(),
     );
   }
 }

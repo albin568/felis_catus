@@ -12,21 +12,69 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          PopupMenuButton(
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(child: Text('Cat details')),
+                  const PopupMenuItem(child: Text('Category'))
+                ];
+              },
+          ),
+        ],
         title: const Text('Welcome to Felis Catus'),
       ),
-      body: Center(
-        child: Container(
-      height: 80.0,
-      width: 80.0,
-      color: Colors.tealAccent,
-      child: const Align(
-        alignment: Alignment.topRight,
-        // child: Icon(
-          // size: 60,
-        // ),
-        // ),
-       ),
-      ),
+
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+
+          children: [
+            Container(
+            height: 30,
+            width: 30,
+            color: Colors.white,
+            child: const Align(
+              alignment: Alignment.center,
+              child: Icon(Icons.search),
+            ),
+          ),
+      ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 250,
+                child: ElevatedButton(onPressed: () {
+
+                  }, child: const Text("Enter the details of the Cat")),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+
+                width: 250,
+                child: ElevatedButton(onPressed: () {
+
+                  }, child: const Text("My Cat list")),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 250,
+                child: ElevatedButton(onPressed: () {
+
+                  }, child: const Text("Location of accessories shop")),
+              ),
+              const Icon(Icons.location_pin),
+            ],
+          )
+        ],
       ),
     );
   }

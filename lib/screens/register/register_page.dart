@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../login/login_page.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -8,13 +9,23 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool passwordVisible = false;
+
+  @override
+  void initState(){
+    super.initState();
+    passwordVisible = true;
+  }
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmController = TextEditingController();
   var email="", password="", confirm="";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
+    home: Scaffold(
       appBar: AppBar(
         title: const Text("Registration"),
       ),
@@ -25,6 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: EdgeInsets.all(10.0),
             child: TextField(
               decoration: InputDecoration(
+                label: Text('Name'),
                 border: OutlineInputBorder(),
                 hintText: "Enter name"
               ),
@@ -35,6 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: TextField(
               controller: emailController,
               decoration: const InputDecoration(
+                label: Text('Email'),
                 hintText: "Enter email",
                 border: OutlineInputBorder()
               ),
@@ -42,20 +55,27 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
+            child: TextFormField(
+              obscureText: passwordVisible,
               controller: passwordController,
               decoration: const InputDecoration(
+                label: Text('Password'),
               hintText: "Enter password",
               border: OutlineInputBorder(),
-
+                alignLabelWithHint: false,
+                filled: true,
             ),
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
             ),
           ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  // obscureText: passwordVisible,
                   controller: confirmController,
                   decoration: const InputDecoration(
+                    label: Text('Confirm password'),
                     border: OutlineInputBorder(),
                     hintText: "Confirm password",
                   ),
@@ -66,18 +86,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 200,
                 child: ElevatedButton(onPressed: () {
                   setState(() {
-                    print(emailController.text + passwordController.text);
-                    email = emailController.text;
-                    password = passwordController.text;
-                  }
-                  );
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder:
+                            (context) => const LoginPage(),));
+                  });
                 },
-                    child: const Text("Login")),
+                    child: const Text("Register")),
               ),
-          TextButton(onPressed: () {},
-              child: const Text("Already have an account? Click here!")),
+          TextButton(onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const LoginPage(),));
+          },
+              child: const Text("Already have an account?")),
         ],
       ),
+    ),
     );
   }
 }
