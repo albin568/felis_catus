@@ -11,9 +11,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var email="", password="";
+  var email="";
+  var password="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +27,18 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: TextField(
+            child: TextFormField(
               controller: emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 hintText: "Enter email",
                   border: OutlineInputBorder()),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter the email';
+                }
+                return null;
+              },
               ),
 
             ),
@@ -41,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(
                 labelText: 'Password',
                 hintText: "Enter password",
+                  suffixIcon: Icon(Icons.remove_red_eye),
                   border: OutlineInputBorder()),
             ),
           ),
@@ -74,14 +83,17 @@ class _LoginPageState extends State<LoginPage> {
 
             ),
           ),
-          TextButton(onPressed: () {
-            setState(() {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder:
-                      (context) => const RegisterPage(),));
-            });
-          },
-              child: const Text("No account? Create One")),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextButton(onPressed: () {
+              setState(() {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder:
+                        (context) => const RegisterPage(),));
+              });
+            },
+                child: const Text("No account? Create One")),
+          ),
 
         ],
       ),

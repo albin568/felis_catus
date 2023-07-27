@@ -9,31 +9,26 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool passwordVisible = false;
-
-  @override
-  void initState(){
-    super.initState();
-    passwordVisible = true;
-  }
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmController = TextEditingController();
   var email="", password="", confirm="";
+  bool passwordVisible = false;
+  bool confirmVisible = false;
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
-    home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text("Registration"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(20.0),
             child: TextField(
               decoration: InputDecoration(
                 label: Text('Name'),
@@ -43,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: TextField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -54,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: TextFormField(
               obscureText: passwordVisible,
               controller: passwordController,
@@ -64,13 +59,14 @@ class _RegisterPageState extends State<RegisterPage> {
               border: OutlineInputBorder(),
                 alignLabelWithHint: false,
                 filled: true,
+                icon: Icon(Icons.remove_red_eye)
             ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
             ),
           ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20.0),
                 child: TextField(
                   // obscureText: passwordVisible,
                   controller: confirmController,
@@ -93,14 +89,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                     child: const Text("Register")),
               ),
-          TextButton(onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const LoginPage(),));
-          },
-              child: const Text("Already have an account?")),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextButton(onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage(),));
+            },
+                child: const Text("Already have an account?")),
+          ),
         ],
       ),
-    ),
     );
   }
 }

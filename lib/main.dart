@@ -1,3 +1,5 @@
+import 'package:felis_catus/screens/login/login_page.dart';
+import 'package:felis_catus/screens/register/register_page.dart';
 import 'package:felis_catus/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
          primarySwatch: Colors.blueGrey
       ),
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
+      // home: const RegisterPage(),
+      home: const LoginPage(),
+
     );
   }
 }
