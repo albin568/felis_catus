@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
               border: OutlineInputBorder(),
                 alignLabelWithHint: false,
                 filled: true,
-                icon: Icon(Icons.remove_red_eye)
+                suffixIcon: Icon(Icons.remove_red_eye),
             ),
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
